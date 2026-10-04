@@ -24,4 +24,4 @@ COPY docker/scripts/startup-webserver.sh ./
 RUN sed -i 's/await self.sleep(0.5)/await self.sleep(2)/' /usr/local/lib/python3.12/site-packages/nodriver/core/browser.py
 
 # Run
-CMD [ "./startup-webserver.sh"]
+CMD ["python", "potoken-generator.py"]
