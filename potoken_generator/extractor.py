@@ -101,9 +101,10 @@ class PotokenExtractor:
             logger.info('update started')
             self._extraction_done.clear()
             try:
-                browser = await nodriver.start(headless=False,
-                                               browser_executable_path=self.browser_path,
-                                               user_data_dir=self.profile_path)
+               browser = await nodriver.start(headless=False,
+                              browser_executable_path=self.browser_path,
+                              user_data_dir=self.profile_path,
+                              sandbox=False)
             except FileNotFoundError as e:
                 msg = "could not find Chromium. Make sure it's installed or provide direct path to the executable"
                 raise FileNotFoundError(msg) from e
