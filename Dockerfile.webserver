@@ -1,32 +1,5 @@
-CMD ["./startup-webserver.sh"]
-``` :chatgpt-content-reference{index="0"}
-
-
-So **don't add a Railway Start Command**. Your Dockerfile is supposed to provide it.
-
-### The likely problem
-
-Your fork's `Dockerfile.webserver` needs to be **exactly** this:
-
-```dockerfile
 FROM ghcr.io/imputnet/yt-session-generator:latest
 
 COPY docker/scripts/startup-webserver.sh ./
 
 CMD [ "./startup-webserver.sh" ]
-``` :chatgpt-content-reference{index="1"}
-
-
-And your Railway settings should be:
-
-- **Repo:** `thesilvry-lgtm/yt-session-generator`
-- **Branch:** `main`
-- **Dockerfile Path:** `Dockerfile.webserver`
-- **Start Command:** **BLANK**
-
-### One important thing
-
-The upstream project confirms that its webserver image is intended to run with:
-
-```bash
-docker run -p 8080:8080 ghcr.io/imputnet/yt-session-generator:webserver
